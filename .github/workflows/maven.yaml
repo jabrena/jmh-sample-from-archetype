@@ -6,7 +6,7 @@ jobs:
   run:
     name: Build
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     strategy:
       matrix:
         java-version: ['22', '23', '24']
@@ -21,4 +21,4 @@ jobs:
       - name: Maven build
         run: cd test && ./mvnw --batch-mode --no-transfer-progress verify --file pom.xml
       - name: Run JMH benchmarks (CI mode)
-        run: cd test && java -jar target/benchmarks.jar -wi 1 -i 1 -f 1 -t 1 -w 1s -r 1s 
+        run: cd test && java -XX:-ThreadPriorityPolicy -jar target/benchmarks.jar -wi 1 -i 1 -f 1 -t 1 -w 1s -r 1s 
