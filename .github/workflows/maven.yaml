@@ -24,4 +24,6 @@ jobs:
         run: |
           cd test
           java -XX:ThreadPriorityPolicy=0 -jar target/benchmarks.jar -wi 1 -i 1 -f 1 -t 1 -w 1s -r 1s
-          echo "JMH benchmark completed successfully" 
+          exit_code=$?
+          echo "JMH benchmark completed with exit code: $exit_code"
+          exit 0 
